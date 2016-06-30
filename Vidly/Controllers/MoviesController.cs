@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 
 namespace Vidly.Controllers
@@ -13,6 +15,22 @@ namespace Vidly.Controllers
         {
             var movie = new Movie { Name = "Frozen" };
             return View(movie);
+        }
+
+        public ActionResult TryingViewModel()
+        {
+            var movie = new Movie { Name = "The Lion King" };
+            var customers = new List<Customer>
+            {
+                new Customer {Name = "Customer 1"},
+                new Customer {Name = "Customer 2"}
+            };
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+            return View(viewModel);
         }
 
         public ActionResult ShowMovieData()
